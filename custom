@@ -1,0 +1,25 @@
+;; Sawfish user customization -- do not edit by hand!
+;; Use the configurator instead.
+;; sawfish version 1.10, written Sat Aug 30 20:29:27 2014
+
+(custom-set-keymap (quote global-keymap) (quote (keymap (cycle-windows . "W-TAB") ((run-shell-command "x-paste") . "Super-p") ((activate-workspace 1) . "Super-1") ((activate-workspace 2) . "Super-2") ((activate-workspace 3) . "Super-3") ((activate-workspace 4) . "Super-4") ((activate-workspace 5) . "Super-5") (cabinet-switch . "Super-C-TAB") (audio-down . "XF86AudioLowerVolume") (audio-up . "XF86AudioRaiseVolume") (next-workspace . "W-Right") (previous-workspace . "W-Left"))))
+(custom-set-typed-variable (quote match-window-profile) (quote ((((WM_WINDOW_ROLE . "^browser$")) (frame-type . none)))) (quote match-window) (quote sawfish.wm.ext.match-window))
+(custom-set-typed-variable (quote mxflat:corner-width-adjustment) (quote 2) (quote (number 0 100)))
+(custom-set-typed-variable (quote mxflat:titlebar-bgcolor-unfocused) (quote "#380056003c00") (quote color))
+(custom-set-typed-variable (quote default-frame-style) (quote mxflat) (quote frame-style))
+(custom-set-typed-variable (quote init-wallpaper) (quote ()) (quote boolean))
+(custom-set-typed-variable (quote default-window-animator) (quote none) (quote (choice none solid wireframe cross elliptical draft)))
+(custom-set-keymap (quote window-keymap) (quote (keymap (tab-raise-right-window . "H-ISO_Left_Tab") (send-to-next-workspace . "Super-C-Right") (send-to-previous-workspace . "Super-C-Left") (pack-window-left . "Super-M-Left") (pack-window-up . "Super-M-Up") (pack-window-right . "Super-M-Right") (pack-window-down . "Super-M-Down") (maximize-window-fullscreen-toggle . "Super-M") (maximize-window-toggle . "Super-m") (maximize-fill-window-vertically-toggle . "Super-v") (maximize-fill-window-horizontally-toggle . "Super-h") (resize-window-interactively . "Super-Button1-C-Click") (tab-raise-left-window . "W-ISO_Left_Tab") (raise-and-pass-through-click . "Button1-Click") (move-window-interactively . "W-Button1-Move") (popup-window-ops-menu . "W-Button2-Click") (raise-lower-window . "W-Button3-Click") (lower-window . "W-Down") (raise-window . "W-Up"))))
+(custom-set-typed-variable (quote raise-windows-on-focus) (quote ()) (quote boolean) (quote sawfish.wm.ext.auto-raise))
+(custom-set-typed-variable (quote cabinet:cycle) (quote "Super-C-TAB") (quote event))
+(custom-set-typed-variable (quote customize-show-symbols) (quote ()) (quote boolean))
+(custom-set-typed-variable (quote menus-include-shortcuts) (quote t) (quote boolean))
+(custom-set-typed-variable (quote focus-windows-when-mapped) (quote t) (quote boolean))
+(custom-set-typed-variable (quote xterm-program) (quote "gnome-terminal") (quote string))
+(custom-set-typed-variable (quote place-window-mode) (quote first-fit-or-interactive) (quote symbol))
+(custom-set-typed-variable (quote move-lock-when-maximized) (quote ()) (quote boolean))
+(custom-set-typed-variable (quote workspace-boundary-mode) (quote wrap-around) (quote (choice stop wrap-around keep-going)))
+(custom-set-typed-variable (quote workspace-send-boundary-mode) (quote wrap-around) (quote (choice stop wrap-around keep-going)))
+(custom-set-typed-variable (quote workspace-names) (quote ("two" "three" "one" "four")) (quote (list string "Workspace names")))
+(custom-set-typed-variable (quote focus-mode) (quote enter-only) (quote symbol))
+(custom-set-typed-variable (quote wm-modifier-value) (quote (super)) (quote modifier-list))

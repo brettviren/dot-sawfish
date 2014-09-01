@@ -1,0 +1,5 @@
+(require 'services)
+(provide 'bv-services)
+(services-add "Dictionary" "xterm -T 'dict: #' -e dict #")
+(services-add "Unix man" "xterm -T 'man: #' -e sh -c 'man #; read'")
+(bind-keys global-keymap "C-M-SPC" services)

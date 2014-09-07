@@ -14,4 +14,4 @@
 
 	 
 
-(bind-keys global-keymap "W-p" xpasteto)
+

@@ -49,13 +49,15 @@
   "Focused window before selection-menu is popped-up.")
 
 (defvar selection-actions
-  '(("Mozilla"  "mozilla -remote \'openURL(" ",new-tab)\'" selection-fix-url)
-    ("Google"  "mozilla -remote \'openURL(http://www.google.com/search?q=" ",new-tab)\'" selection-clean-url-query-escaping)
-    ("Emacsclient"  "emacsclient --no-wait" nil selection-shell-quote-argument)
-    ("Manual"   "xterm -e man")
-    ("Dictionary"  "xterm -e dict")
-    ("Swap primary and secondary" (lambda (#!rest args) (selection-swap "primary" "secondary")))
-    ("Swap primary and clipboard" (lambda (#!rest args) (selection-swap "primary" "clipboard")))
+  '(
+    ("Web URL"  "web-browser " selection-fix-url)
+    ("Google"  "web-browser 'http://www.google.com/search?q="
+     selection-clean-url-query-escaping "'")
+;    ("Emacsclient"  "emacsclient --no-wait" nil selection-shell-quote-argument)
+;    ("Manual"   "xterm -e man")
+;    ("Dictionary"  "xterm -e dict")
+;    ("Swap primary and secondary" (lambda (#!rest args) (selection-swap "primary" "secondary")))
+;    ("Swap primary and clipboard" (lambda (#!rest args) (selection-swap "primary" "clipboard")))
     ("Paste selection"  (lambda (selection) (selection-dump selection)))
 ))
 
@@ -69,7 +71,21 @@
      (list (concat "Secondary: " (selection-fix-entry secd))
 	   `(selection-popup-action-menu ,secd))
      (list (concat "Clipboard: " (selection-fix-entry clip))
-	   `(selection-popup-action-menu, clip)))))
+	   `(selection-popup-action-menu ,clip)))))
+
+;; like above but immediately paste
+(define (paste-menu)
+  (setq *selection-last-focused-window* (input-focus))
+  (let ((prim (x-get-selection 'PRIMARY))
+	(secd (x-get-selection 'SECONDARY))
+	(clip (x-get-selection 'CLIPBOARD)))
+    (list 
+     (list (concat "Primary: " (selection-fix-entry prim))
+	   `(selection-dump ,prim))
+     (list (concat "Secondary: " (selection-fix-entry secd))
+	   `(selection-dump ,secd))
+     (list (concat "Clipboard: " (selection-fix-entry clip))
+	   `(selection-dump ,clip)))))
 
 (define (selection-popup-action-menu selection)
   (setq *selection-last-focused-window* (input-focus))
@@ -96,6 +112,10 @@
 (define (selection-popup-menu)
   (interactive)
   (popup-menu (selection-menu)))
+
+(define (paste-popup-menu)
+  (interactive)
+  (popup-menu (paste-menu)))
     
 (define (selection-shell-quote-argument argument)
   "Quote an argument for passing as argument to an inferior
@@ -164,6 +184,7 @@ services-clean-url-query-escaping)"
   "Send the selected selection to the window focused before the
   selection menu was popped-up. Based on dump-selections from
   Mark Triggs's selection-push.jl."
+  ;(display-message (concat "pasting: " text))
   (selection-type-in text *selection-last-focused-window*))
 
 (define (selection-fix-entry text)

@@ -1,3 +1,8 @@
 
 (require 'bv-volume)
-(require 'bv-paste)
+
+;(require 'bv-paste)
+;(bind-keys global-keymap "W-p" xpasteto)
+(require 'selection-menu)
+(bind-keys global-keymap "W-y" selection-popup-menu)
+(bind-keys global-keymap "W-p" paste-popup-menu)

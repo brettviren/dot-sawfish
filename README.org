@@ -1,0 +1,7 @@
+My [[http://sawfish.wikia.com/wiki/Main_Page][sawfish window manager]] config
+
+* Installation
+
+#+BEGIN_EXAMPLE
+  $ git clone git@github.com:brettviren/dot-sawfish.git ~/.sawfish
+#+END_EXAMPLE

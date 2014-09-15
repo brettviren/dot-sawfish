@@ -50,6 +50,7 @@
 
 (defvar selection-actions
   '(
+;;    ("Org capture" "emacsclient 'org-protocol://capture://x/clip/'" nil "")
     ("Web URL"  "web-browser " selection-fix-url)
     ("Google"  "web-browser 'http://www.google.com/search?q="
      selection-clean-url-query-escaping "'")
@@ -116,7 +117,7 @@
 (define (paste-popup-menu)
   (interactive)
   (popup-menu (paste-menu)))
-    
+
 (define (selection-shell-quote-argument argument)
   "Quote an argument for passing as argument to an inferior
   shell. (based on shell-quote-argument from GNU Emacs subr.el)"

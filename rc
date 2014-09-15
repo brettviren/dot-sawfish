@@ -6,3 +6,8 @@
 (require 'selection-menu)
 (bind-keys global-keymap "W-y" selection-popup-menu)
 (bind-keys global-keymap "W-p" paste-popup-menu)
+
+(define (org-protocol-capture)
+  (interactive)
+  (system "emacsclient 'org-protocol://capture://x/clip/' &"))
+(bind-keys global-keymap "W-o" org-protocol-capture)
